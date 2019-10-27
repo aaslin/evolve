@@ -8,7 +8,10 @@ public class Main {
         LocalDateTime date = LocalDateTime.of(2019, 1, 1, 0, 0);
 
         while (date.getYear() == 2019) {
-            System.out.println(String.format("%s, %d", date, new TollCalculator().getTollFee(Date.from(date.atZone(ZoneId.systemDefault()).toInstant()), () -> "Car")));
+            Date currentDate = Date.from(date.atZone(ZoneId.systemDefault()).toInstant());
+            int oldResult = new TollCalculator().getTollFee(currentDate, () -> "Car");
+//            int newResult = new TollCalculatorExample().getTollFee(() -> "Car", currentDate);
+//            System.out.println(String.format("%s, %d - %d", date, oldResult, newResult));
             date = date.plusMinutes(30);
         }
     }
